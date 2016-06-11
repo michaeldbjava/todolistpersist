@@ -25,6 +25,8 @@ public class UserGroup implements Serializable {
 	public UserGroup() {
 	}
 	
+	
+	
 	public UserGroup(String groupname,User user){
 		id = new UserGroupPK();
 		id.setGroupname(groupname);

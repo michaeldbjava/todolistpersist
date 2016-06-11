@@ -2,6 +2,7 @@ package todolistpersist.dao;
 
 import javax.persistence.EntityManager;
 
+import todolistpersist.User;
 import todolistpersist.UserGroup;
 
 public class UserGroupDao {
@@ -11,11 +12,18 @@ EntityManager em;
 		this.em=em;
 	}
 	
-	public boolean addUserGroup(String usergroup,String username){
+	public boolean addUserGroup(String usergroup,User user){
+			em.getTransaction().begin();
+			UserGroup usergroup2 = new UserGroup(usergroup,user);
+			em.persist(usergroup2);
+			em.getTransaction().commit();
 		return false;
 	}
 	
 	public boolean addUserGroup(UserGroup usergroup){
+		em.getTransaction().begin();
+		em.persist(usergroup);
+		em.getTransaction().commit();
 		return false;
 	}
 	
