@@ -22,5 +22,9 @@ EntityManager em;
 	public boolean updateUserGroup(String usergroup,String username){
 		return false;
 	}
+	
+	public boolean updateUserGroup(UserGroup usergroup){
+		return false;
+	}
 
 }
