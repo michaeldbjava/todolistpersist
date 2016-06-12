@@ -2,8 +2,9 @@ package todolistpersist.dao;
 
 import javax.persistence.EntityManager;
 
-import todolistpersist.User;
-import todolistpersist.UserGroup;
+import todolistpersist.entity.user.User;
+import todolistpersist.entity.user.UserGroup;
+import todolistpersist.entity.user.UserGroupPK;
 
 public class UserGroupDao {
 EntityManager em;
@@ -27,11 +28,20 @@ EntityManager em;
 		return false;
 	}
 	
-	public boolean updateUserGroup(String usergroup,String username){
+	
+	
+	public boolean updateUserGroup(UserGroup usergroup){
+		em.getTransaction().begin();
+		em.merge(usergroup);
+		em.getTransaction().commit();
 		return false;
 	}
 	
-	public boolean updateUserGroup(UserGroup usergroup){
+	public boolean deleteUserGroup(UserGroup usergroup){
+		em.getTransaction().begin();
+		UserGroup usergroupToDelete = em.find(UserGroup.class, usergroup.getId());
+		em.remove(usergroupToDelete);
+		em.getTransaction().commit();
 		return false;
 	}
 

@@ -5,8 +5,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import todolistpersist.User;
 import todolistpersist.dao.UserDao;
+import todolistpersist.entity.user.User;
 
 public class TestUserDaoRetrieve {
 

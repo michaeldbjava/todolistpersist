@@ -3,7 +3,7 @@ package todolistpersist.dao;
 import javax.management.Query;
 import javax.persistence.EntityManager;
 
-import todolistpersist.Todolist;
+import todolistpersist.entity.todolist.Todolist;
 
 public class ToDoListDao {
 	EntityManager em;

@@ -4,9 +4,9 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import todolistpersist.User;
-import todolistpersist.UserGroup;
-import todolistpersist.UserGroupPK;
+import todolistpersist.entity.user.User;
+import todolistpersist.entity.user.UserGroup;
+import todolistpersist.entity.user.UserGroupPK;
 
 public class UserDao {
 	EntityManager em;
@@ -67,6 +67,9 @@ public class UserDao {
 	
 	
 	public boolean deleteUser(User user){
+		em.getTransaction().begin();
+		em.remove(user);
+		em.getTransaction().commit();
 		return false;
 	}
 	public User retrieveUser(String username){

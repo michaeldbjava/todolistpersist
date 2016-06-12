@@ -7,8 +7,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import todolistpersist.User;
 import todolistpersist.dao.UserDao;
+import todolistpersist.entity.user.User;
 
 public class TestUserDaoInsert {
 

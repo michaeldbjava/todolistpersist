@@ -1,16 +1,17 @@
-package todopersist.testdao.userentity;
+package todopersist.testdao.usergroupentity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import todolistpersist.dao.UserDao;
+import todolistpersist.dao.UserGroupDao;
 import todolistpersist.entity.user.User;
 import todolistpersist.entity.user.UserGroup;
+import todolistpersist.entity.user.UserGroupPK;
 
-public class TestUserDaoInsertUserObject {
+public class TestUserGroupDaoUpdate {
 
-	public TestUserDaoInsertUserObject() {
+	public TestUserGroupDaoUpdate() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -19,22 +20,28 @@ public class TestUserDaoInsertUserObject {
 		try{
 			EntityManagerFactory emf= Persistence.createEntityManagerFactory("todolistpersist");
 			EntityManager em = emf.createEntityManager();
-			UserDao userDao = new UserDao(em);
+			
+			
+			UserGroupDao userDao = new UserGroupDao(em);
 			// Test 1, nur einen neuen Nutzer hinzufügen
-			User userToInsert = new User("michaellaube3", "Laube", "Michael", "Herr", "michael@web.de", "0221/8888", "0178/8888", "secret", "Tier", "Tiger");
+			User userToInsert = new User("ralf1", "Mustermann", "Frank", "Herr", "frank@web.de", "0221/8888", "0178/8888", "secret", "Tier", "Tiger");
 			
 			/*Test 2, einen neuen Nutzer mit einer neuen Nutzergruppe hinzufügen
 			 * 
 			 */
-			UserGroup userGroup = new UserGroup("gruppexx",userToInsert);
-			userToInsert.getUserGroups().add(userGroup);
+			UserGroup userGroup = new UserGroup("todolist",userToInsert);
+			userGroup.setUser(userToInsert);
+			UserGroupPK userGroupPk = new UserGroupPK("todolist2", "ralf1");
+			userGroup.setId(userGroupPk);
 			
-			userDao.addUser(userToInsert);
+			userDao.updateUserGroup(userGroup);
 			
 			}
 			catch(Exception e){
 				e.printStackTrace();
 			}
+
+
 	}
 
 }
