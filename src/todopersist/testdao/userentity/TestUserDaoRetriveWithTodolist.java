@@ -1,6 +1,5 @@
 package todopersist.testdao.userentity;
 
-import javax.persistence.EntityGraph;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -8,9 +7,9 @@ import javax.persistence.Persistence;
 import todolistpersist.dao.UserDao;
 import todolistpersist.entity.user.User;
 
-public class TestUserDaoRetrieve {
+public class TestUserDaoRetriveWithTodolist {
 
-	public TestUserDaoRetrieve() {
+	public TestUserDaoRetriveWithTodolist() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -19,16 +18,13 @@ public class TestUserDaoRetrieve {
 		try{
 			EntityManagerFactory emf= Persistence.createEntityManagerFactory("todolistpersist");
 			EntityManager em = emf.createEntityManager();
-			
 			UserDao userDao = new UserDao(em);
-			User user = userDao.retrieveUser("ralf1");
-			//System.out.println(user.getUserGroups().get(0).getId().getGroupname());
+			User user = userDao.retrieveUser("michaellaube");
 			System.out.println(user.toString());
-			}
-			catch(Exception e){
-				e.printStackTrace();
-			}
-
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 
 }

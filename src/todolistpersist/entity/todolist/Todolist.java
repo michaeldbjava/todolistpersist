@@ -15,6 +15,7 @@ import java.util.List;
 @Entity
 @NamedQueries({
 @NamedQuery(name="Todolist.findAll", query="SELECT t FROM Todolist t"),
+@NamedQuery(name="Todolist.findUserTodolists", query="SELECT t FROM Todolist t where t.user.username=:username"),
 @NamedQuery(name="Todolist.findMaxKey", query="SELECT max(t.todolistnr) FROM Todolist t")
 })
 public class Todolist implements Serializable {
@@ -26,7 +27,7 @@ public class Todolist implements Serializable {
 	@Lob
 	private String todolist;
 
-	private byte visible;
+	private boolean visible;
 
 	//bi-directional many-to-one association to Todo
 	@OneToMany(mappedBy="todolist",fetch=FetchType.EAGER)
@@ -40,7 +41,7 @@ public class Todolist implements Serializable {
 	public Todolist() {
 	}
 
-	public Todolist(String todolist,byte visible) {
+	public Todolist(String todolist,boolean visible) {
 		this.todolist=todolist;
 		this.visible=visible;
 	}
@@ -61,11 +62,11 @@ public class Todolist implements Serializable {
 		this.todolist = todolist;
 	}
 
-	public byte getVisible() {
+	public boolean getVisible() {
 		return this.visible;
 	}
 
-	public void setVisible(byte visible) {
+	public void setVisible(boolean visible) {
 		this.visible = visible;
 	}
 
@@ -98,5 +99,12 @@ public class Todolist implements Serializable {
 	public void setUser(User user) {
 		this.user = user;
 	}
+
+	@Override
+	public String toString() {
+		return "Todolist [todolistnr=" + todolistnr + ", todolist=" + todolist + ", visible=" + visible +  "]";
+	}
+	
+	
 
 }
