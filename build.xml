@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="todolistpersist" default="start" basedir=".">
+	<description>Copy Files of Eclipse Workspace to Git work directory
+	</description>
+	<!-- set global properties for this build -->
+	<property name="src" location="src" />
+	<property name="aimbuildfile" location="C:\Users\michael\gitprojects\todolistpersist" />
+<property name="aim" location="C:\Users\michael\gitprojects\todolistpersist\src" />
+	<target name="start">
+		<echo message="Copy files from eclipse workspace to git work directory" />
+		<copy todir="${aim}" overwrite="true">
+			<fileset dir="${src}" />
+		</copy>
+		<echo message="Copy ant file to project folder of git"></echo>
+		<copy file="build.xml" todir="${aimbuildfile}" overwrite="true">
+		</copy>
+	</target>
+
+</project>
+  
