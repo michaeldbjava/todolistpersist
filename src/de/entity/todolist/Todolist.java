@@ -36,6 +36,11 @@ public class Todolist implements Serializable {
 	@OneToMany(mappedBy="todolist",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	private List<Todo> todos;
 
+	//bi-directional many-to-one association to Todo
+		@OneToMany(mappedBy="todolist",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+		private List<DocumentTodolist> documentsTodolist;
+	
+	
 	//bi-directional many-to-one association to User
 	@ManyToOne
 	@JoinColumn(name="fk_user_username")
@@ -104,10 +109,21 @@ public class Todolist implements Serializable {
 		this.user = user;
 	}
 
+	
+	
+	public List<DocumentTodolist> getDocumentsTodolist() {
+		return documentsTodolist;
+	}
+
+	public void setDocumentsTodolist(List<DocumentTodolist> documentsTodolist) {
+		this.documentsTodolist = documentsTodolist;
+	}
+
 	@Override
 	public String toString() {
-		return "Todolist [todolistnr=" + todolistnr + ", todolist=" + todolist + ", visible=" + visible +  "]";
+		return "Todolist [todolistnr=" + todolistnr + ", " + (todolist != null ? "todolist=" + todolist : "") + "]";
 	}
+
 	
 	
 

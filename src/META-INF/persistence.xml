@@ -6,6 +6,7 @@
 		<class>de.entity.user.User</class>
 		<class>de.entity.user.UserGroup</class>
 		<class>de.entity.user.UserGroupPK</class>
+		<class>de.entity.todolist.DocumentTodolist</class>
 		
 		<properties>
 	    <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>

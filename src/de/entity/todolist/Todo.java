@@ -32,7 +32,7 @@ public class Todo implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date reminddate;
 
-	private byte reminderon;
+	private boolean reminderon;
 
 	@Temporal(TemporalType.DATE)
 	private Date startdate;
@@ -103,11 +103,11 @@ public class Todo implements Serializable {
 		this.reminddate = reminddate;
 	}
 
-	public byte getReminderon() {
+	public boolean getReminderon() {
 		return this.reminderon;
 	}
 
-	public void setReminderon(byte reminderon) {
+	public void setReminderon(boolean reminderon) {
 		this.reminderon = reminderon;
 	}
 
