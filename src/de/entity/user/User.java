@@ -50,10 +50,10 @@ public class User implements Serializable {
 
 	// bi-directional many-to-one association to Todolist
 	@OneToMany(mappedBy = "user",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-	private List<Todolist> todolists;
+	private List<Todolist> todolists = new ArrayList<Todolist>();
 
 	// bi-directional many-to-one association to UserGroup
-	@OneToMany(mappedBy = "user",fetch=FetchType.EAGER,cascade=CascadeType.PERSIST)
+	@OneToMany(mappedBy = "user",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	private List<UserGroup> userGroups = new ArrayList<UserGroup>();
 
 	public User() {

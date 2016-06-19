@@ -35,6 +35,7 @@ public class UserGroup implements Serializable {
 		
 	}
 
+	
 
 	public UserGroupPK getId() {
 		return this.id;

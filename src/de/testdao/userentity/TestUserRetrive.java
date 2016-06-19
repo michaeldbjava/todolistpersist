@@ -9,19 +9,19 @@ import javax.persistence.Persistence;
 import org.junit.Test;
 
 import de.dao.UserDao;
+import de.entity.user.User;
 
-public class TestUserDelete {
+public class TestUserRetrive {
 
 	@Test
-	public void testDeleteUserString() {
+	public void testRetriveUserString() {
 		EntityManagerFactory emf= Persistence.createEntityManagerFactory("todolistpersist");
 		EntityManager em = emf.createEntityManager();
 		UserDao userDao = new UserDao(em);
-		boolean statusDelete = userDao.deleteUser("michaellaube");
-		
+		User user = userDao.retrieveUser("heinz40");
+		System.out.println(user.toString());
+		assertEquals("heinz40", user.getUsername());
 		em.close();
-		assertEquals(true, statusDelete);
 	}
 
-	
 }

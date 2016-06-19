@@ -15,6 +15,7 @@ public class Todo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int todonrabsolut;
 
 	@Temporal(TemporalType.DATE)
@@ -44,11 +45,11 @@ public class Todo implements Serializable {
 	@Lob
 	private String todocontent;
 
-	private int todonrtodolist;
+//	private int todolistnr;
 
 	//bi-directional many-to-one association to Todolist
 	@ManyToOne
-	@JoinColumn(name="fk_todolistnr")
+	@JoinColumn(name="todolistnr")
 	private Todolist todolist;
 
 	public Todo() {
@@ -142,14 +143,14 @@ public class Todo implements Serializable {
 		this.todocontent = todocontent;
 	}
 
-	public int getTodonrtodolist() {
-		return this.todonrtodolist;
+	/*public int getTodolistnr() {
+		return this.todolistnr;
 	}
 
-	public void setTodonrtodolist(int todonrtodolist) {
-		this.todonrtodolist = todonrtodolist;
-	}
-
+	public void setTodolistnr(int todolistnr) {
+		this.todolistnr = todolistnr;
+	}*/
+	
 	public Todolist getTodolist() {
 		return this.todolist;
 	}
