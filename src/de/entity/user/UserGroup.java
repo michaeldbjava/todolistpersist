@@ -6,7 +6,8 @@ import javax.persistence.*;
 
 /**
  * The persistent class for the user_group database table.
- * 
+ * @author michael
+ * @version 0.1
  */
 @Entity
 @Table(name="user_group")

@@ -14,6 +14,7 @@ import java.util.List;
  */
 /**
  * @author michael
+ * @version 0.1
  *
  */
 @Entity
@@ -49,7 +50,7 @@ public class User implements Serializable {
 	private String passwordquestion;
 
 	// bi-directional many-to-one association to Todolist
-	@OneToMany(mappedBy = "user",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	@OneToMany(mappedBy = "user",fetch=FetchType.EAGER,cascade=CascadeType.ALL,orphanRemoval=true)
 	private List<Todolist> todolists = new ArrayList<Todolist>();
 
 	// bi-directional many-to-one association to UserGroup
@@ -61,16 +62,16 @@ public class User implements Serializable {
 
 	/**
 	 * Create a new User object, which respresent a new user to ToDoList applicatioin
-	 * @param username
-	 * @param lastname
-	 * @param firstname
-	 * @param adress
-	 * @param e_mail
-	 * @param fixnetwork
-	 * @param mobilnetwork
-	 * @param password
-	 * @param passwordquestion
-	 * @param passwordanswer
+	 * @param username The username of user
+	 * @param lastname The lastname of user
+	 * @param firstname The firstname of user
+	 * @param adress The adress of user
+	 * @param e_mail The e-mail of user
+	 * @param fixnetwork The fixnetwork number
+	 * @param mobilnetwork The mobilnetwork numer
+	 * @param password The password for user
+	 * @param passwordquestion The password question for user
+	 * @param passwordanswer The password answer for user
 	 */
 	public User(String username, String lastname, String firstname, String adress, String e_mail, String fixnetwork,
 			String mobilnetwork, String password, String passwordquestion, String passwordanswer) {
@@ -222,7 +223,7 @@ public class User implements Serializable {
 		return "User [username=" + username + ", adress=" + adress + ", e_mail=" + e_mail + ", firstname=" + firstname
 				+ ", fixnetwork=" + fixnetwork + ", lastname=" + lastname + ", mobilnetwork=" + mobilnetwork
 				+ ", password=" + password + ", passwordanswer=" + passwordanswer + ", passwordquestion="
-				+ passwordquestion + ", todolists=" + todolists + ", userGroups=" + userGroups + "]";
+				+ passwordquestion + ", todolists=" + todolists==null?"No Todolists":todolists + ", userGroups=" + userGroups==null?"No Usergroups":userGroups + "]";
 	}
 	
 	

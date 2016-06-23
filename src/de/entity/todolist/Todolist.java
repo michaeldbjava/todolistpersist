@@ -10,6 +10,8 @@ import java.util.List;
 
 /**
  * The persistent class for the todolist database table.
+ * @author michael
+ * @version 0.1
  * 
  */
 @Entity
@@ -33,11 +35,11 @@ public class Todolist implements Serializable {
 	private boolean visible;
 
 	//bi-directional many-to-one association to Todo
-	@OneToMany(mappedBy="todolist",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="todolist",fetch=FetchType.EAGER,cascade=CascadeType.ALL,orphanRemoval=true)
 	private List<Todo> todos;
 
 	//bi-directional many-to-one association to Todo
-		@OneToMany(mappedBy="todolist",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+		@OneToMany(mappedBy="todolist",fetch=FetchType.EAGER,cascade=CascadeType.ALL,orphanRemoval=true)
 		private List<DocumentTodolist> documentsTodolist;
 	
 	

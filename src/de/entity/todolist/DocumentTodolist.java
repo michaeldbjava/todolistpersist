@@ -9,7 +9,8 @@ import javax.persistence.*;
 
 /**
  * Entity implementation class for Entity: DocumentTodolist
- *
+ * @author michael
+ * @version 0.1
  */
 @Entity
 

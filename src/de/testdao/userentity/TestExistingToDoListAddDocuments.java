@@ -22,6 +22,7 @@ import de.entity.user.User;
 
 /**
  * @author michael
+ * @version 0.1
  *
  */
 public class TestExistingToDoListAddDocuments {
@@ -41,7 +42,7 @@ public class TestExistingToDoListAddDocuments {
 			doc1.setDocumentname("Dokument 1");
 			doc1.setTodolist(list);
 			DocumentTodolist doc2 = new DocumentTodolist();
-			doc2.setDocumentname("Dokument 2");
+			doc2.setDocumentname("Dokument Carmen");
 			doc2.setTodolist(list);
 			
 			list.getDocumentsTodolist().add(doc1);

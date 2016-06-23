@@ -5,7 +5,8 @@ import javax.persistence.*;
 
 /**
  * The primary key class for the user_group database table.
- * 
+ * @author michael
+ * @version 0.1
  */
 @Embeddable
 public class UserGroupPK implements Serializable {
