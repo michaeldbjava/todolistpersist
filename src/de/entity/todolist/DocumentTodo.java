@@ -29,7 +29,7 @@ public class DocumentTodo implements Serializable {
 	private String documentname;
 	@Lob
 	private byte[] filedata;
-	private int sizeoffile;
+	private long sizeoffile;
 	private String fileextension;
 	@ManyToOne
 	@JoinColumn(name="todonrabsolut")
@@ -47,7 +47,7 @@ public class DocumentTodo implements Serializable {
 	 * @param todo Todo object which contains this DocumentTodo object
 	 */
 	
-	public DocumentTodo(String documentname, String comment, byte[] filedata, String fileextension, int sizeoffile,
+	public DocumentTodo(String documentname, String comment, byte[] filedata, String fileextension, long sizeoffile,
 			java.util.Date uploaddate, Todo todo) {
 		super();
 		this.documentname = documentname;
@@ -94,11 +94,11 @@ public class DocumentTodo implements Serializable {
 	public void setFiledata(byte[] filedata) {
 		this.filedata = filedata;
 	}   
-	public int getSizeoffile() {
+	public long getSizeoffile() {
 		return this.sizeoffile;
 	}
 
-	public void setSizeoffile(int sizeoffile) {
+	public void setSizeoffile(long sizeoffile) {
 		this.sizeoffile = sizeoffile;
 	}   
 	public String getFileextension() {

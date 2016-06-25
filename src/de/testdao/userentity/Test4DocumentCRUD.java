@@ -22,6 +22,9 @@ import de.entity.todolist.Todo;
 import de.entity.todolist.Todolist;
 import de.entity.user.User;
 import de.entity.user.UserGroup;
+import de.filehelper.PathToByteArray;
+import de.filehelper.FileExtensionExtractor;
+import de.filehelper.FilePersistHelper;
 /**
  * 
  * @author michael
@@ -62,19 +65,13 @@ public class Test4DocumentCRUD {
 		 * @param uploaddate Date of upload
 		 * @param todo Todo object which contains this DocumentTodo object
 		 */
-		DocumentTodo doc1 = new DocumentTodo("Hallo.doc","Ein Kommentar",null,"doc",0, new java.util.Date(),t1);
+		FilePersistHelper fPH1= new FilePersistHelper("Dokument1.docx");
+		FilePersistHelper fPH2= new FilePersistHelper("Dokument2.docx");
+		FilePersistHelper fPH3= new FilePersistHelper("Dokument3.docx");
 		
-		DocumentTodo doc2 = new DocumentTodo("Hallo2.doc","Ein Kommentar",null,"doc",0, new java.util.Date(),t1);
-		DocumentTodo doc3 = new DocumentTodo("Hallo3.doc","Ein Kommentar",null,"doc",0, new java.util.Date(),t1);
-		try {
-			Path pathToFile = Paths.get("c:\\tmp\\androidintro.pdf");
-			byte[] data = Files.readAllBytes(pathToFile);
-			doc1.setFiledata(data);
-			doc2.setFiledata(data);
-			doc3.setFiledata(data);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		DocumentTodo doc1 = new DocumentTodo("Dokument Hallo","Ein Kommentar",fPH1.getFileDate(),fPH1.getFileExtension(),fPH1.getFileSize(), new java.util.Date(),t1);
+		DocumentTodo doc2 = new DocumentTodo("Dokument Hallo2","Ein Kommentar",fPH2.getFileDate(),fPH2.getFileExtension(),fPH2.getFileSize(), new java.util.Date(),t1);
+		DocumentTodo doc3 = new DocumentTodo("Dokument Hallo3","Ein Kommentar",fPH3.getFileDate(),fPH3.getFileExtension(),fPH3.getFileSize(), new java.util.Date(),t1);
 		
 		
 		t1.setTodolist(list);
@@ -83,9 +80,15 @@ public class Test4DocumentCRUD {
 		t1.getDocumenttodo().add(doc3);
 		Todo t2 = new Todo("todo 2", "offen", "hoch", "irgendein content", null, null, null, null, null, false, null,
 				new ArrayList<DocumentTodo>());
-		DocumentTodo doc4 = new DocumentTodo("Hallo.doc","Ein Kommentar",null,"doc",0, new java.util.Date(),t2);
-		DocumentTodo doc5 = new DocumentTodo("Hallo.doc","Ein Kommentar",null,"doc",0, new java.util.Date(),t2);
-		DocumentTodo doc6 = new DocumentTodo("Hallo.doc","Ein Kommentar",null,"doc",0, new java.util.Date(),t2);
+		
+		FilePersistHelper fPH4= new FilePersistHelper("Dokument4.docx");
+		FilePersistHelper fPH5= new FilePersistHelper("Dokument5.docx");
+		FilePersistHelper fPH6= new FilePersistHelper("Dokument6.docx");
+		DocumentTodo doc4 = new DocumentTodo("Dokument Hallo 4","Ein Kommentar",fPH4.getFileDate(),fPH4.getFileExtension(),fPH4.getFileSize(), new java.util.Date(),t2);
+		DocumentTodo doc5 = new DocumentTodo("Dokument Hallo 5","Ein Kommentar",fPH5.getFileDate(),fPH5.getFileExtension(),fPH5.getFileSize(), new java.util.Date(),t2);
+		DocumentTodo doc6 = new DocumentTodo("Dokument Hallo 6","Ein Kommentar",fPH6.getFileDate(),fPH6.getFileExtension(),fPH6.getFileSize(), new java.util.Date(),t2);
+		
+		
 		t2.setTodolist(list);
 		t2.getDocumenttodo().add(doc4);
 		t2.getDocumenttodo().add(doc5);
@@ -128,14 +131,13 @@ public class Test4DocumentCRUD {
 	}
 
 	public boolean cleanTestCaseCollection() {
-		/*EntityManager em = TodolistEMFactory.createEM("todolistpersist");
+		EntityManager em = TodolistEMFactory.createEM("todolistpersist");
 		UserDao userDao = new UserDao(em);
 		User user = userDao.retrieveUser(username);
 		boolean statusDelete = userDao.deleteUser(user);
 
 		em.close();
-		return statusDelete;*/
-		return true;
+		return statusDelete;
 	}
 
 }
