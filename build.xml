@@ -7,7 +7,7 @@
 	<property name="aimbuildfile" location="C:\Users\michael\gitprojects\todolistpersist" />
 <property name="aim" location="C:\Users\michael\gitprojects\todolistpersist\src" />
 	<target name="start">
-		<echo message="Copy files from eclipse workspace to git work directory" />
+		<echo message="Copy files from eclipse workspace to git work directory (C:\Users\michael\gitprojects\todolistpersist\src)" />
 		<copy todir="${aim}" overwrite="true">
 			<fileset dir="${src}" />
 		</copy>

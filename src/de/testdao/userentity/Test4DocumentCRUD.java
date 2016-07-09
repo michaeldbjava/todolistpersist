@@ -2,6 +2,8 @@ package de.testdao.userentity;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
+import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -25,6 +27,7 @@ import de.entity.user.UserGroup;
 import de.filehelper.PathToByteArray;
 import de.filehelper.FileExtensionExtractor;
 import de.filehelper.FilePersistHelper;
+import de.filehelper.FileSaveLocalHelper;
 /**
  * 
  * @author michael
@@ -33,8 +36,9 @@ import de.filehelper.FilePersistHelper;
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Test4DocumentCRUD {
-	String username = "mondschein";
+	String username = "mondschein2";
 	String groupname = "gruppeSachbearbeiter";
+	String pathTmpDirectory ="tmp_test_directory";
 	/**
 	 * Test method to initialize test envirement.
 	 */
@@ -102,6 +106,28 @@ public class Test4DocumentCRUD {
 		assertEquals(true, statusAddTodos);
 	}
 
+	@Test
+	public void cRetrieveAndSaveDocuments(){
+		EntityManager em = TodolistEMFactory.createEM("todolistpersist");
+		UserDao userDao = new UserDao(em);
+		User user = userDao.retrieveUser(username);
+
+		List<Todolist> lists = user.getTodolists();
+		Todolist list = lists.get(0);
+		List<Todo> listTodos= list.getTodos();
+		for(Todo todo:listTodos){
+			List<DocumentTodo> listDocTodo = todo.getDocumenttodo();
+			for(DocumentTodo document:listDocTodo){
+				byte[] fileData = document.getFiledata();
+				FileSaveLocalHelper.saveFileFromByteArray(document.getDocumentname() +"."+ document.getFileextension(), "c:\\tmpfiles", fileData);
+				Path tmpdirectory = Paths.get(pathTmpDirectory);
+				
+							}
+			
+			
+		}
+		assertEquals(true,true);
+	}
 	
 	@Test
 	public void zCleanTestCollection() {
@@ -137,6 +163,18 @@ public class Test4DocumentCRUD {
 		boolean statusDelete = userDao.deleteUser(user);
 
 		em.close();
+		//C:\tmpfiles clean directory
+		Path pathToDelete=  Paths.get("C:\\tmpfiles");
+		try(DirectoryStream<Path> stream = Files.newDirectoryStream(pathToDelete)){
+			for(Path file:stream){
+				System.out.println("Lösche Datei: " + file.getFileName());
+				Files.delete(file);
+			}
+		}
+		catch(IOException x){
+			
+		}
+//		
 		return statusDelete;
 	}
 
